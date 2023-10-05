@@ -7,7 +7,7 @@ void main() {
   testWidgets('description', (WidgetTester widgetTester) async {
     await widgetTester.pumpWidget(const MyApp());
 
-      expect(find.text('Firebase Meetup'), findsOneWidget);
+      expect(find.text('Flutter Firebase Demo'), findsOneWidget);
       expect(find.text('January 1st'), findsNothing);
 
   });
