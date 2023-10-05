@@ -1,4 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart'
+    hide EmailAuthProvider, PhoneAuthProvider;    
+import 'package:flutter/material.dart';           
+import 'package:provider/provider.dart';           
+
+import 'app_state.dart';
+import 'authentication.dart';
 import 'widgets.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -16,6 +22,13 @@ class MyHomePage extends StatelessWidget {
           Image.asset('assets/codelab.png'),
           const IconAndDetail(Icons.calendar_today, 'October 30'),
           const IconAndDetail(Icons.location_city, 'San Francisco'),
+          Consumer<ApplicationState>(
+            builder: (context, appState, _) => AuthFunc(
+                loggedIn: appState.loggedIn,
+                signedOut: () {
+                  FirebaseAuth.instance.signOut();
+                }),
+          ),
           const Divider(
             height: 8,
             thickness: 1,
